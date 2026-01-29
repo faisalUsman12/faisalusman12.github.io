@@ -1,8 +1,167 @@
 <!DOCTYPE html>
-<html>
-<head><title>Coming Soon</title></head>
-<body style="text-align:center; padding:100px; font-family:sans-serif;">
-    <h1>Equad Labs</h1>
-    <p>This site is currently under development.</p>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>EquadLabs</title>
+
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- AOS Animation -->
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<style>
+/* NAVBAR */
+.navbar {
+    background:#0d1b2a;
+}
+.navbar a { color:white !important; }
+
+/* HERO */
+.hero {
+    height: 95vh;
+    background: url("https://images.unsplash.com/photo-1537432376769-00a0c1b3b0c6") center/cover no-repeat;
+    position: relative;
+    color:white;
+}
+.hero::before {
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(13,27,42,0.85);
+}
+.hero-content {
+    position:relative;
+    z-index:2;
+}
+
+/* SERVICES */
+.service-card {
+    border:none;
+    transition:.4s;
+}
+.service-card:hover {
+    transform: translateY(-10px);
+}
+
+/* STATS */
+.stats {
+    background:#0d1b2a;
+    color:white;
+}
+
+/* CTA */
+.cta {
+    background: linear-gradient(to right,#00b4d8,#0077b6);
+    color:white;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg fixed-top">
+<div class="container">
+    <a class="navbar-brand fw-bold" href="#">EquadLabs</a>
+    <button class="navbar-toggler bg-light" data-bs-toggle="collapse" data-bs-target="#nav">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Courses</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+        </ul>
+    </div>
+</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero d-flex align-items-center">
+<div class="container hero-content text-center">
+    <h1 data-aos="fade-up" data-aos-delay="100">Learn Coding From Experts</h1>
+    <p data-aos="fade-up" data-aos-delay="300">Professional IT training & development services</p>
+    <button class="btn btn-info px-4 text-white" data-aos="zoom-in" data-aos-delay="500">
+        Get Started
+    </button>
+</div>
+</section>
+
+<!-- SERVICES -->
+<section class="py-5">
+<div class="container text-center">
+    <h2 class="mb-5" data-aos="fade-up">Our Services</h2>
+    <div class="row g-4">
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="card service-card p-4">
+                <i class="fa fa-code fa-2x text-primary mb-3"></i>
+                <h5>Web Development</h5>
+                <p>Modern websites & systems</p>
+            </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="card service-card p-4">
+                <i class="fa fa-mobile fa-2x text-primary mb-3"></i>
+                <h5>Mobile Apps</h5>
+                <p>Flutter Android & iOS apps</p>
+            </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+            <div class="card service-card p-4">
+                <i class="fa fa-graduation-cap fa-2x text-primary mb-3"></i>
+                <h5>IT Training</h5>
+                <p>Career-oriented training</p>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- STATS -->
+<section class="stats py-5 text-center">
+<div class="container">
+    <div class="row">
+        <div class="col-md-4" data-aos="zoom-in">
+            <h2>500+</h2><p>Students</p>
+        </div>
+        <div class="col-md-4" data-aos="zoom-in" data-aos-delay="150">
+            <h2>30+</h2><p>Courses</p>
+        </div>
+        <div class="col-md-4" data-aos="zoom-in" data-aos-delay="300">
+            <h2>95%</h2><p>Success Rate</p>
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- CTA -->
+<section class="cta py-5 text-center">
+<h2 data-aos="fade-up">Start Your IT Career Today</h2>
+<button class="btn btn-light mt-3" data-aos="zoom-in">Enroll Now</button>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-dark text-white text-center p-3">
+© Codesteem Clone — Practice Only
+</footer>
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+<script>
+AOS.init({
+    duration: 1000,
+    once: true
+});
+</script>
+
 </body>
 </html>
