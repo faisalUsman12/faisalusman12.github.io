@@ -39,6 +39,92 @@
         .scroll-down { position:absolute; bottom:20px; left:50%; transform:translateX(-50%); font-size:14px; color:#999; }
         .scroll-down i { display:block; font-size:18px; animation:bounce 1.5s infinite; }
         @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(8px)} }
+
+        .pricing-section{
+    padding:80px 0;
+}
+
+.pricing-toggle{
+    background:#f2f2f2;
+    display:inline-flex;
+    padding:6px;
+    border-radius:10px;
+}
+.pricing-toggle button{
+    border:none;
+    background:transparent;
+    padding:10px 22px;
+    border-radius:8px;
+    font-size:14px;
+}
+.pricing-toggle button.active{
+    background:#6ec6f1;
+    color:#fff;
+}
+
+/* CARDS */
+.price-card{
+    background:#fff;
+    padding:35px;
+    border-radius:20px;
+    box-shadow:0 18px 45px rgba(0,0,0,.08);
+    transition:.4s;
+    height:100%;
+}
+.price-card:hover{
+    transform:translateY(-10px);
+}
+.price-card.featured{
+    background:#f6f7f9;
+}
+.price-card.dark{
+    background:#000;
+    color:#fff;
+}
+.price-card.dark li{
+    color:#ccc;
+}
+.price{
+    font-size:36px;
+    font-weight:800;
+}
+.price span{
+    font-size:16px;
+    font-weight:400;
+    color:#777;
+}
+.dark .price span{
+    color:#bbb;
+}
+
+ul{
+    list-style:none;
+    padding-left:0;
+}
+ul li{
+    margin-bottom:10px;
+    padding-left:16px;
+    position:relative;
+}
+ul li::before{
+    content:"–";
+    position:absolute;
+    left:0;
+    color:#6ec6f1;
+}
+
+.btn-select{
+    margin-top:25px;
+    background:#000;
+    color:#fff;
+    border:none;
+    padding:12px 30px;
+    border-radius:8px;
+}
+.dark .btn-select{
+    background:#fff;
+    color:#000;
+}
     </style>
 </head>
 
@@ -142,6 +228,76 @@
     <button class="btn btn-start mt-3" data-aos="zoom-in" style="background:#2f2f2f;">Enroll Now</button>
 </section>
 
+
+
+
+
+<section class="py-5">
+<div class="container">
+
+<div class="row mb-4 align-items-center">
+    <div class="col-md-6">
+        <h2 class="fw-bold">Membership</h2>
+        <h4 class="text-muted">Plans</h4>
+    </div>
+    <div class="col-md-6 text-md-end">
+        <div class="pricing-toggle">
+            <button class="active" data-plan="monthly">Monthly</button>
+            <button data-plan="quarterly">Quarterly</button>
+            <button data-plan="yearly">Yearly</button>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4">
+
+<!-- STARTER -->
+<div class="col-md-4">
+<div class="price-card">
+<h5 class="title"></h5>
+<p class="desc"></p>
+<h2 class="price"></h2>
+<ul class="features"></ul>
+<button class="btn-select">Select</button>
+</div>
+</div>
+
+<!-- GROWTH -->
+<div class="col-md-4">
+<div class="price-card featured">
+<h5 class="title"></h5>
+<p class="desc"></p>
+<h2 class="price"></h2>
+<ul class="features"></ul>
+<button class="btn-select">Select</button>
+</div>
+</div>
+
+<!-- PRO / ENTERPRISE -->
+<div class="col-md-4">
+<div class="price-card dark">
+<h5 class="title"></h5>
+<p class="desc"></p>
+<h2 class="price"></h2>
+<ul class="features"></ul>
+<button class="btn-select">Select</button>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
 <footer class="bg-dark text-white py-5">
     <div class="container">
         <div class="row align-items-center">
@@ -207,6 +363,7 @@
     </div>
 </footer>
 
+
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
@@ -223,6 +380,169 @@
     $('.hero-3d').on('mouseleave', function(){
         $(this).css('transform','rotateX(0) rotateY(0)');
     });
+
+    $('.pricing-toggle button').click(function(){
+    let plan = $(this).data('plan');
+
+    $('.pricing-toggle button').removeClass('active');
+    $(this).addClass('active');
+
+    $('.price').each(function(){
+        let val = $(this).data(plan);
+        let suffix = plan === 'monthly' ? '/mo' : plan === 'quarterly' ? '/qtr' : '/yr';
+        $(this).html('$' + val + '<span>' + suffix + '</span>');
+    });
+});
+
+const data = {
+monthly: [
+{
+title:"Starter – Monthly",
+desc:"Ideal for freelancers or micro-businesses.",
+price:"$2500/mo",
+features:[
+"Landing Page or Basic Website (1–3 pages)",
+"2 Custom Graphics / Month",
+"Basic SEO Setup",
+"Starter Chatbot",
+"Email Support",
+"Contact Form Integration"
+]
+},
+{
+title:"Growth – Monthly",
+desc:"Perfect for small to medium businesses.",
+price:"$5000/mo",
+features:[
+"Dynamic Website or App UI",
+"6 Premium Graphics / Month",
+"On-Page SEO Optimization",
+"AI Chatbot",
+"Monthly Performance Report",
+"Priority Email Support"
+]
+},
+{
+title:"Pro – Monthly",
+desc:"For teams seeking tech-driven growth.",
+price:"$12000/mo",
+features:[
+"Full Website or MVP App",
+"10 Custom Graphics / Month",
+"Technical SEO",
+"AI Integration",
+"Smart Chatbot",
+"Dedicated Coordinator"
+]
+}
+],
+
+quarterly: [
+{
+title:"Starter – Quarterly",
+desc:"Entry plan for startups.",
+price:"$7000/qtr",
+features:[
+"Responsive Website (Up to 5 Pages)",
+"6 Graphics / Quarter",
+"SEO Keyword Research",
+"Chatbot with Lead Capture",
+"Quarterly Report"
+]
+},
+{
+title:"Growth – Quarterly",
+desc:"Balanced plan for scaling businesses.",
+price:"$14000/qtr",
+features:[
+"Website + Admin Dashboard",
+"12 Graphics / Quarter",
+"Technical SEO + Schema",
+"AI Chatbot Automation",
+"Analytics Dashboard"
+]
+},
+{
+title:"Pro – Quarterly",
+desc:"For growth-focused teams.",
+price:"$33000/qtr",
+features:[
+"App + Website Integrated",
+"Brand Identity Kit",
+"Full SEO Suite",
+"AI App",
+"CRM Chatbot",
+"Business Health Report"
+]
+}
+],
+
+yearly: [
+{
+title:"Starter – Yearly",
+desc:"For businesses needing long-term digital presence.",
+price:"$25000/yr",
+features:[
+"Corporate Website (Up to 7 Pages)",
+"12 Graphics / Year",
+"Quarterly SEO Audits",
+"FAQ Chatbot",
+"Email Campaign Setup",
+"Annual Review",
+"Form Email Integration",
+"Uptime Monitoring"
+]
+},
+{
+title:"Growth – Yearly",
+desc:"Strategic support for ongoing growth.",
+price:"$51000/yr",
+features:[
+"Frontend Web + Mobile UI",
+"AI Chatbot Automation",
+"Full-Year SEO Roadmap",
+"Monthly Analytics Report",
+"24 Premium Graphics",
+"WhatsApp Chat Widget",
+"Content Calendar"
+]
+},
+{
+title:"Enterprise – Yearly",
+desc:"End-to-end digital transformation.",
+price:"$122000/yr",
+features:[
+"Custom App + Website",
+"AI-Powered App",
+"SEO + Content Plan",
+"Branding + 50 Assets",
+"Dedicated Manager",
+"Automation Workflows",
+"Priority SLA Support",
+"Benchmarking Report"
+]
+}
+]
+};
+
+function loadPlans(type){
+$('.price-card').each(function(i){
+$(this).find('.title').text(data[type][i].title);
+$(this).find('.desc').text(data[type][i].desc);
+$(this).find('.price').text(data[type][i].price);
+const ul=$(this).find('.features').html('');
+data[type][i].features.forEach(f=>ul.append(`<li>${f}</li>`));
+});
+}
+
+$('.pricing-toggle button').click(function(){
+$('.pricing-toggle button').removeClass('active');
+$(this).addClass('active');
+loadPlans($(this).data('plan'));
+});
+
+loadPlans('monthly');
+
 </script>
 
 </body>
