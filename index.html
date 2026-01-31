@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>EQuad Labs</title>
+    <title>EquadLabs</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -107,7 +107,7 @@ ul li{
     position:relative;
 }
 ul li::before{
-    content:"–";
+    
     position:absolute;
     left:0;
     color:#6ec6f1;
@@ -125,6 +125,32 @@ ul li::before{
     background:#fff;
     color:#000;
 }
+
+/* SOCIAL ICON FIX */
+footer a{
+    text-decoration: none !important;
+}
+
+footer a:focus,
+footer a:hover{
+    text-decoration: none !important;
+    outline: none;
+}
+
+/* Social icons style */
+footer .fab,
+footer .fas{
+    opacity: 0.6;                 /* CodeSteem-like opacity */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Hover effect */
+footer a:hover .fab,
+footer a:hover .fas{
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
     </style>
 </head>
 
@@ -137,13 +163,17 @@ ul li::before{
         <div class="collapse navbar-collapse justify-content-center">
             <ul class="navbar-nav">
                 <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                <li class="nav-item"><a class="nav-link" href="service.html">Services</a></li>
                 
                 <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
             </ul>
         </div>
 
-        <a href="tel:+923190176583" class="btn btn-call">Book a call</a>
+        <a href="https://calendly.com/faisalusman385"
+   target="_blank"
+   class="btn btn-call">
+   Book a call
+</a>
     </div>
 </nav>
 
@@ -337,7 +367,7 @@ ul li::before{
                 <h6 class="text-uppercase fw-bold mb-3" style="color:#4fc3f7;">Quick Links</h6>
                 <ul class="list-unstyled">
                     <li><a href="index.html" class="text-white-50 text-decoration-none small">Home</a></li>
-                    <li><a href="#services" class="text-white-50 text-decoration-none small">Services</a></li>
+                    <li><a href="service.html" class="text-white-50 text-decoration-none small">Services</a></li>
                     <li><a href="contact.html" class="text-white-50 text-decoration-none small">Contact Us</a></li>
                 </ul>
             </div>
