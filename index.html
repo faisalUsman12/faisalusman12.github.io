@@ -1,571 +1,288 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>EquadLabs</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>EquadLabs – AI Software Company</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<!-- CDN -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
-    <style>
-        body { font-family: "Segoe UI", sans-serif; }
+<style>
 
-        /* NAVBAR */
-        .navbar { background:#2f2f2f; padding:14px 0; }
-        .navbar-brand { font-weight:700; font-size:22px; color:#4fc3f7 !important; }
-        .nav-link { color:#fff !important; margin:0 12px; font-size:15px; }
-        .btn-call { background:#000; color:#fff; border-radius:8px; padding:8px 18px; text-decoration: none; }
-        .btn-call:hover { background:#000000; color:#4fc3f7; border: 1px solid #4fc3f7; }
-
-        /* HERO */
-        .hero { min-height:100vh; display:flex; align-items:center; background:#fff; position:relative; }
-        .hero h1 { font-size:52px; font-weight:700; color:#2c3e50; }
-        .hero h1 span { color:#5bc0eb; font-style:italic; }
-        .hero p { margin-top:22px; color:#6c7a89; max-width:480px; line-height:1.7; }
-        .btn-start { background:#34495e; color:#fff; border:none; padding:13px 28px; border-radius:30px; margin-top:25px; }
-        .btn-start:hover { background:#000000; color:#4fc3f7; border: 1px solid #4fc3f7; }
-
-        /* 3D IMAGE */
-        .hero-3d { max-width:420px; filter: drop-shadow(0 40px 45px rgba(0,0,0,0.25)); animation: float3d 6s ease-in-out infinite; transform-style: preserve-3d; transition: transform .2s ease; }
-        @keyframes float3d { 0%{ transform: translateY(0); } 50%{ transform: translateY(-25px); } 100%{ transform: translateY(0); } }
-
-        /* SERVICES */
-        .service-card { border:none; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: .3s; }
-        .service-card:hover { transform: translateY(-10px); }
-
-        /* SCROLL */
-        .scroll-down { position:absolute; bottom:20px; left:50%; transform:translateX(-50%); font-size:14px; color:#999; }
-        .scroll-down i { display:block; font-size:18px; animation:bounce 1.5s infinite; }
-        @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(8px)} }
-
-        .pricing-section{
-    padding:80px 0;
+/* ================= ROOT ================= */
+:root{
+    --ai-blue:#38bdf8;
+    --ai-indigo:#6366f1;
+    --bg-dark:#020617;
+    --card-dark:#0f172a;
+    --text-muted:#9ca3af;
 }
 
-.pricing-toggle{
-    background:#f2f2f2;
-    display:inline-flex;
-    padding:6px;
+body{
+    margin:0;
+    font-family:"Segoe UI",sans-serif;
+    background:radial-gradient(circle at top,#0f172a,#020617);
+    color:#e5e7eb;
+    overflow-x:hidden;
+}
+
+/* ================= AI PARTICLES ================= */
+#ai-canvas{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:-1;
+}
+
+/* ================= NAVBAR ================= */
+.navbar{
+    background:rgba(2,6,23,.85);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(255,255,255,.05);
+}
+.navbar-brand{
+    font-weight:700;
+    font-size:22px;
+    color:var(--ai-blue)!important;
+}
+.nav-link{
+    color:#e5e7eb!important;
+    margin:0 12px;
+}
+.btn-call{
+    background:linear-gradient(135deg,var(--ai-blue),var(--ai-indigo));
+    color:#fff;
     border-radius:10px;
+    padding:8px 18px;
+    text-decoration:none;
 }
-.pricing-toggle button{
+
+/* ================= HERO ================= */
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+}
+.hero h1{
+    font-size:52px;
+    font-weight:800;
+}
+.hero h1 span{
+    background:linear-gradient(135deg,var(--ai-blue),var(--ai-indigo));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+.hero p{
+    max-width:520px;
+    color:var(--text-muted);
+    margin-top:20px;
+}
+.btn-start{
+    margin-top:25px;
+    padding:14px 34px;
     border:none;
-    background:transparent;
-    padding:10px 22px;
-    border-radius:8px;
-    font-size:14px;
-}
-.pricing-toggle button.active{
-    background:#6ec6f1;
+    border-radius:30px;
+    background:linear-gradient(135deg,var(--ai-blue),var(--ai-indigo));
     color:#fff;
 }
+.hero-3d{
+    max-width:420px;
+    filter:drop-shadow(0 0 40px rgba(56,189,248,.4));
+    animation:float 6s ease-in-out infinite;
+}
+@keyframes float{
+    0%{transform:translateY(0)}
+    50%{transform:translateY(-25px)}
+    100%{transform:translateY(0)}
+}
 
-/* CARDS */
-.price-card{
-    background:#fff;
-    padding:35px;
-    border-radius:20px;
-    box-shadow:0 18px 45px rgba(0,0,0,.08);
+/* ================= SERVICES ================= */
+.service-card{
+    background:rgba(15,23,42,.9);
+    border:1px solid rgba(255,255,255,.06);
+    border-radius:18px;
+    padding:30px;
+    text-align:center;
     transition:.4s;
-    height:100%;
+}
+.service-card:hover{
+    transform:translateY(-12px) scale(1.02);
+    border-color:rgba(56,189,248,.4);
+}
+.service-card i{
+    color:var(--ai-blue);
+    margin-bottom:15px;
+}
+
+/* ================= STATS ================= */
+.stats{
+    background:linear-gradient(180deg,#020617,#0f172a);
+}
+.stats h2{
+    color:var(--ai-blue);
+    font-weight:800;
+}
+
+/* ================= PRICING ================= */
+.price-card{
+    background:rgba(15,23,42,.95);
+    border:1px solid rgba(255,255,255,.06);
+    border-radius:20px;
+    padding:35px;
+    box-shadow:0 30px 60px rgba(0,0,0,.6);
+    transition:.4s;
 }
 .price-card:hover{
     transform:translateY(-10px);
 }
 .price-card.featured{
-    background:#f6f7f9;
-}
-.price-card.dark{
-    background:#000;
-    color:#fff;
-}
-.price-card.dark li{
-    color:#ccc;
+    background:linear-gradient(180deg,rgba(56,189,248,.18),rgba(15,23,42,.95));
+    border-color:rgba(56,189,248,.5);
 }
 .price{
     font-size:36px;
     font-weight:800;
+    color:var(--ai-blue);
 }
-.price span{
-    font-size:16px;
-    font-weight:400;
-    color:#777;
-}
-.dark .price span{
-    color:#bbb;
-}
-
-ul{
-    list-style:none;
-    padding-left:0;
-}
-ul li{
-    margin-bottom:10px;
-    padding-left:16px;
-    position:relative;
-}
-ul li::before{
-    
-    position:absolute;
-    left:0;
-    color:#6ec6f1;
-}
-
 .btn-select{
-    margin-top:25px;
-    background:#000;
-    color:#fff;
+    margin-top:20px;
+    width:100%;
+    padding:12px;
     border:none;
-    padding:12px 30px;
-    border-radius:8px;
-}
-.dark .btn-select{
-    background:#fff;
-    color:#000;
+    border-radius:10px;
+    background:linear-gradient(135deg,var(--ai-blue),var(--ai-indigo));
+    color:#fff;
 }
 
-/* SOCIAL ICON FIX */
-footer a{
-    text-decoration: none !important;
+/* ================= FOOTER ================= */
+footer{
+    background:#020617;
+    border-top:1px solid rgba(255,255,255,.05);
+}
+footer i{
+    color:var(--ai-blue);
 }
 
-footer a:focus,
-footer a:hover{
-    text-decoration: none !important;
-    outline: none;
-}
-
-/* Social icons style */
-footer .fab,
-footer .fas{
-    opacity: 0.6;                  /* CodeSteem-like opacity */
-    transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-/* Hover effect */
-footer a:hover .fab,
-footer a:hover .fas{
-    opacity: 1;
-    transform: translateY(-2px);
-}
-
-    </style>
+</style>
 </head>
 
 <body>
 
+<canvas id="ai-canvas"></canvas>
+
 <nav class="navbar fixed-top navbar-expand-lg">
-    <div class="container">
-        <a class="navbar-brand" href="index.html">Equad<span class="text-white">Labs</span></a>
-
-        <div class="collapse navbar-collapse justify-content-center">
-            <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="service.html">Services</a></li>
-                
-                <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
-            </ul>
-        </div>
-
-        <a href="https://calendly.com/faisalusman385"
-   target="_blank"
-   class="btn btn-call">
-   Book a call
-</a>
-    </div>
+<div class="container">
+<a class="navbar-brand" href="#">Equad<span class="text-white">Labs</span></a>
+<ul class="navbar-nav mx-auto">
+<li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+<li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+</ul>
+<a href="#" class="btn-call">Book a Call</a>
+</div>
 </nav>
 
 <section class="hero">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-md-6" data-aos="fade-right">
-                <h1>We Build Software <br><span>That Empowers</span><br>Your Business</h1>
-                <p>We're a Global Software Company that builds innovative digital solutions and scalable platforms for forward-thinking businesses.</p>
-                <button class="btn btn-start">Start a Project</button>
-            </div>
-            <div class="col-md-6 text-center" data-aos="fade-left">
-                <img src="img.png" class="img-fluid hero-3d" alt="3D Object">
-            </div>
-        </div>
-    </div>
-    <div class="scroll-down"><i class="fa fa-angle-down"></i></div>
+<div class="container">
+<div class="row align-items-center">
+<div class="col-md-6" data-aos="fade-right">
+<h1>AI-Powered Software<br><span>That Scales Business</span></h1>
+<p>We build intelligent platforms, automation systems, and AI-driven software solutions for modern enterprises.</p>
+<button class="btn-start">Launch with AI</button>
+</div>
+<div class="col-md-6 text-center" data-aos="fade-left">
+<img src="img.png" class="hero-3d img-fluid">
+</div>
+</div>
+</div>
 </section>
-
-<section id="services" class="py-5">
-    <div class="container text-center">
-        <h2 class="mb-5" data-aos="fade-up">Our Services</h2>
-        <div class="row g-4">
-            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                <div class="card service-card p-4">
-                    <i class="fa fa-code fa-2x text-primary mb-3"></i>
-                    <h5>Web Development</h5>
-                    <p>Modern websites, portals & enterprise systems</p>
-                </div>
-            </div>
-            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-                <div class="card service-card p-4">
-                    <i class="fa fa-mobile-screen fa-2x text-primary mb-3"></i>
-                    <h5>Mobile App Development</h5>
-                    <p>Flutter Android & iOS applications</p>
-                </div>
-            </div>
-            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-                <div class="card service-card p-4">
-                    <i class="fa fa-desktop fa-2x text-primary mb-3"></i>
-                    <h5>Desktop App Development</h5>
-                    <p>Windows & cross-platform desktop software</p>
-                </div>
-            </div>
-            <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
-                <div class="card service-card p-4">
-                    <i class="fa fa-brain fa-2x text-primary mb-3"></i>
-                    <h5>AI Services</h5>
-                    <p>Artificial Intelligence & smart automation</p>
-                </div>
-            </div>
-            <div class="col-md-4" data-aos="fade-up" data-aos-delay="500">
-                <div class="card service-card p-4">
-                    <i class="fa fa-user-tie fa-2x text-primary mb-3"></i>
-                    <h5>IT Consulting</h5>
-                    <p>Business solutions & technology strategy</p>
-                </div>
-            </div>
-            <div class="col-md-4" data-aos="fade-up" data-aos-delay="600">
-                <div class="card service-card p-4">
-                    <i class="fa fa-users-gear fa-2x text-primary mb-3"></i>
-                    <h5>Staff Augmentation</h5>
-                    <p>Dedicated developers & on-demand tech teams</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="stats py-5 text-center bg-light">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4" data-aos="zoom-in"><h2>500+</h2><p>Project Completed</p></div>
-            <div class="col-md-4" data-aos="zoom-in" data-aos-delay="150"><h2>30+</h2><p>Happy Clients</p></div>
-            <div class="col-md-4" data-aos="zoom-in" data-aos-delay="300"><h2>95%</h2><p>Success Rate</p></div>
-        </div>
-    </div>
-</section>
-
-<section class="cta py-5 text-center">
-    <h2 data-aos="fade-up">Start Your IT Career Today</h2>
-    <button class="btn btn-start mt-3" data-aos="zoom-in" style="background:#2f2f2f;">Enroll Now</button>
-</section>
-
-
-
-
 
 <section class="py-5">
-<div class="container">
-
-<div class="row mb-4 align-items-center">
-    <div class="col-md-6">
-        <h2 class="fw-bold">Membership</h2>
-        <h4 class="text-muted">Plans</h4>
-    </div>
-    <div class="col-md-6 text-md-end">
-        <div class="pricing-toggle">
-            <button class="active" data-plan="monthly">Monthly</button>
-            <button data-plan="quarterly">Quarterly</button>
-            <button data-plan="yearly">Yearly</button>
-        </div>
-    </div>
-</div>
-
+<div class="container text-center">
+<h2 class="mb-5">AI-Driven Services</h2>
 <div class="row g-4">
-
-<div class="col-md-4">
-<div class="price-card">
-<h5 class="title"></h5>
-<p class="desc"></p>
-<h2 class="price"></h2>
-<ul class="features"></ul>
-<button class="btn-select">Select</button>
-</div>
-</div>
-
-<div class="col-md-4">
-<div class="price-card featured">
-<h5 class="title"></h5>
-<p class="desc"></p>
-<h2 class="price"></h2>
-<ul class="features"></ul>
-<button class="btn-select">Select</button>
-</div>
-</div>
-
-<div class="col-md-4">
-<div class="price-card dark">
-<h5 class="title"></h5>
-<p class="desc"></p>
-<h2 class="price"></h2>
-<ul class="features"></ul>
-<button class="btn-select">Select</button>
-</div>
-</div>
-
+<div class="col-md-4"><div class="service-card"><i class="fa fa-brain fa-2x"></i><h5>AI Systems</h5><p>ML, automation & intelligence</p></div></div>
+<div class="col-md-4"><div class="service-card"><i class="fa fa-code fa-2x"></i><h5>Web Platforms</h5><p>Scalable SaaS & dashboards</p></div></div>
+<div class="col-md-4"><div class="service-card"><i class="fa fa-mobile fa-2x"></i><h5>Apps</h5><p>Cross-platform mobile apps</p></div></div>
 </div>
 </div>
 </section>
 
+<section class="stats py-5 text-center">
+<div class="container">
+<div class="row">
+<div class="col-md-4"><h2>500+</h2><p>AI Projects</p></div>
+<div class="col-md-4"><h2>30+</h2><p>Clients</p></div>
+<div class="col-md-4"><h2>95%</h2><p>Success Rate</p></div>
+</div>
+</div>
+</section>
 
-
-
-
-
-
-
-
-
-
-<footer class="bg-dark text-white py-5">
-    <div class="container">
-        <div class="row align-items-center">
-
-            <div class="col-md-4 text-md-start text-center mb-4 mb-md-0">
-                <a class="navbar-brand mb-2 d-inline-block" href="index.html" style="text-decoration:none;">
-                    Equad<span class="text-white">Labs</span>
-                </a>
-                <p class="text-white-50 small">
-                    Building innovative digital solutions for forward-thinking businesses.
-                </p>
-
-                <div class="mt-3">
-                    <a href="https://www.linkedin.com/company/equadlabs"
-                       target="_blank"
-                       class="text-white me-3 fs-5">
-                        <i class="fab fa-linkedin" style="color:#4fc3f7;"></i>
-                    </a>
-
-                    <a href="mailto:info@equadlabs.com"
-                       class="text-white me-3 fs-5">
-                        <i class="fas fa-envelope"style="color:#4fc3f7;"></i>
-                    </a>
-
-                    <a href="https://wa.me/923190176583"
-                       target="_blank"
-                       class="text-white fs-5">
-                        <i class="fab fa-whatsapp"style="color:#4fc3f7;"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div class="col-md-4 text-center mb-4 mb-md-0">
-                <h6 class="text-uppercase fw-bold mb-3" style="color:#4fc3f7;">Quick Links</h6>
-                <ul class="list-unstyled">
-                    <li><a href="index.html" class="text-white-50 text-decoration-none small">Home</a></li>
-                    <li><a href="service.html" class="text-white-50 text-decoration-none small">Services</a></li>
-                    <li><a href="contact.html" class="text-white-50 text-decoration-none small">Contact Us</a></li>
-                </ul>
-            </div>
-
-            <div class="col-md-4 text-md-end text-center">
-                <h6 class="text-uppercase fw-bold mb-3" style="color:#4fc3f7;">Connect</h6>
-                <p class="text-white-50 small mb-1">
-                    <i class="fas fa-envelope me-2"></i>info@equadlabs.com
-                </p>
-                <p class="text-white-50 small">
-                    <i class="fab fa-whatsapp me-2"></i>+92 319 0176583
-                </p>
-            </div>
-
-        </div>
-
-        <hr class="my-4 border-secondary">
-
-        <div class="text-center text-white-50 small">
-            © 2026 EquadLabs. All Rights Reserved.
-        </div>
-    </div>
+<footer class="py-4 text-center text-muted">
+© 2026 EquadLabs — AI Software Company
 </footer>
 
-
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-
 <script>
-    AOS.init({ duration:1200, once:true });
+AOS.init({duration:1200,once:true});
 
-    /* Mouse tilt effect */
-    $('.hero-3d').on('mousemove', function(e){
-        const x = (e.offsetX / $(this).width()) * 20 - 10;
-        const y = (e.offsetY / $(this).height()) * 20 - 10;
-        $(this).css('transform', `rotateX(${-y}deg) rotateY(${x}deg)`);
-    });
-    $('.hero-3d').on('mouseleave', function(){
-        $(this).css('transform','rotateX(0) rotateY(0)');
-    });
-
-    $('.pricing-toggle button').click(function(){
-    let plan = $(this).data('plan');
-
-    $('.pricing-toggle button').removeClass('active');
-    $(this).addClass('active');
-
-    $('.price').each(function(){
-        let val = $(this).data(plan);
-        let suffix = plan === 'monthly' ? '/mo' : plan === 'quarterly' ? '/qtr' : '/yr';
-        $(this).html('$' + val + '<span>' + suffix + '</span>');
-    });
-});
-
-const data = {
-monthly: [
-{
-title:"Starter – Monthly",
-desc:"Ideal for freelancers or micro-businesses.",
-price:"$2500/mo",
-features:[
-"Landing Page or Basic Website (1–3 pages)",
-"2 Custom Graphics / Month",
-"Basic SEO Setup",
-"Starter Chatbot",
-"Email Support",
-"Contact Form Integration"
-]
-},
-{
-title:"Growth – Monthly",
-desc:"Perfect for small to medium businesses.",
-price:"$5000/mo",
-features:[
-"Dynamic Website or App UI",
-"6 Premium Graphics / Month",
-"On-Page SEO Optimization",
-"AI Chatbot",
-"Monthly Performance Report",
-"Priority Email Support"
-]
-},
-{
-title:"Pro – Monthly",
-desc:"For teams seeking tech-driven growth.",
-price:"$12000/mo",
-features:[
-"Full Website or MVP App",
-"10 Custom Graphics / Month",
-"Technical SEO",
-"AI Integration",
-"Smart Chatbot",
-"Dedicated Coordinator"
-]
+/* AI PARTICLES */
+const canvas=document.getElementById("ai-canvas");
+const ctx=canvas.getContext("2d");
+let w,h,particles=[];
+function resize(){
+w=canvas.width=window.innerWidth;
+h=canvas.height=window.innerHeight;
 }
-],
+window.addEventListener("resize",resize);
+resize();
 
-quarterly: [
-{
-title:"Starter – Quarterly",
-desc:"Entry plan for startups.",
-price:"$7000/qtr",
-features:[
-"Responsive Website (Up to 5 Pages)",
-"6 Graphics / Quarter",
-"SEO Keyword Research",
-"Chatbot with Lead Capture",
-"Quarterly Report"
-]
-},
-{
-title:"Growth – Quarterly",
-desc:"Balanced plan for scaling businesses.",
-price:"$14000/qtr",
-features:[
-"Website + Admin Dashboard",
-"12 Graphics / Quarter",
-"Technical SEO + Schema",
-"AI Chatbot Automation",
-"Analytics Dashboard"
-]
-},
-{
-title:"Pro – Quarterly",
-desc:"For growth-focused teams.",
-price:"$33000/qtr",
-features:[
-"App + Website Integrated",
-"Brand Identity Kit",
-"Full SEO Suite",
-"AI App",
-"CRM Chatbot",
-"Business Health Report"
-]
-}
-],
-
-yearly: [
-{
-title:"Starter – Yearly",
-desc:"For businesses needing long-term digital presence.",
-price:"$25000/yr",
-features:[
-"Corporate Website (Up to 7 Pages)",
-"12 Graphics / Year",
-"Quarterly SEO Audits",
-"FAQ Chatbot",
-"Email Campaign Setup",
-"Annual Review",
-"Form Email Integration",
-"Uptime Monitoring"
-]
-},
-{
-title:"Growth – Yearly",
-desc:"Strategic support for ongoing growth.",
-price:"$51000/yr",
-features:[
-"Frontend Web + Mobile UI",
-"AI Chatbot Automation",
-"Full-Year SEO Roadmap",
-"Monthly Analytics Report",
-"24 Premium Graphics",
-"WhatsApp Chat Widget",
-"Content Calendar"
-]
-},
-{
-title:"Enterprise – Yearly",
-desc:"End-to-end digital transformation.",
-price:"$122000/yr",
-features:[
-"Custom App + Website",
-"AI-Powered App",
-"SEO + Content Plan",
-"Branding + 50 Assets",
-"Dedicated Manager",
-"Automation Workflows",
-"Priority SLA Support",
-"Benchmarking Report"
-]
-}
-]
-};
-
-function loadPlans(type){
-$('.price-card').each(function(i){
-$(this).find('.title').text(data[type][i].title);
-$(this).find('.desc').text(data[type][i].desc);
-$(this).find('.price').text(data[type][i].price);
-const ul=$(this).find('.features').html('');
-data[type][i].features.forEach(f=>ul.append(`<li>${f}</li>`));
+for(let i=0;i<80;i++){
+particles.push({
+x:Math.random()*w,
+y:Math.random()*h,
+vx:(Math.random()-.5)*0.5,
+vy:(Math.random()-.5)*0.5
 });
 }
 
-$('.pricing-toggle button').click(function(){
-$('.pricing-toggle button').removeClass('active');
-$(this).addClass('active');
-loadPlans($(this).data('plan'));
+function draw(){
+ctx.clearRect(0,0,w,h);
+particles.forEach(p=>{
+p.x+=p.vx;
+p.y+=p.vy;
+if(p.x<0||p.x>w)p.vx*=-1;
+if(p.y<0||p.y>h)p.vy*=-1;
+
+ctx.beginPath();
+ctx.arc(p.x,p.y,2,0,Math.PI*2);
+ctx.fillStyle="rgba(56,189,248,.6)";
+ctx.fill();
 });
 
-loadPlans('monthly');
-
+for(let i=0;i<particles.length;i++){
+for(let j=i;j<particles.length;j++){
+let dx=particles[i].x-particles[j].x;
+let dy=particles[i].y-particles[j].y;
+let d=Math.sqrt(dx*dx+dy*dy);
+if(d<120){
+ctx.strokeStyle="rgba(99,102,241,.15)";
+ctx.lineWidth=1;
+ctx.beginPath();
+ctx.moveTo(particles[i].x,particles[i].y);
+ctx.lineTo(particles[j].x,particles[j].y);
+ctx.stroke();
+}
+}
+}
+requestAnimationFrame(draw);
+}
+draw();
 </script>
 
 </body>
