@@ -2,17 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EquadLabs – AI Software Company</title>
+<title>EquadLabs</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- CDN -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
 <style>
-
-/* ================= ROOT ================= */
 :root{
     --ai-blue:#38bdf8;
     --ai-indigo:#6366f1;
@@ -22,24 +19,20 @@
 }
 
 body{
-    margin:0;
     font-family:"Segoe UI",sans-serif;
     background:radial-gradient(circle at top,#0f172a,#020617);
     color:#e5e7eb;
     overflow-x:hidden;
 }
 
-/* ================= AI PARTICLES ================= */
+/* AI BACKGROUND */
 #ai-canvas{
     position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
+    inset:0;
     z-index:-1;
 }
 
-/* ================= NAVBAR ================= */
+/* NAVBAR */
 .navbar{
     background:rgba(2,6,23,.85);
     backdrop-filter:blur(12px);
@@ -51,22 +44,23 @@ body{
     color:var(--ai-blue)!important;
 }
 .nav-link{
-    color:#e5e7eb!important;
+    color:#fff!important;
     margin:0 12px;
 }
 .btn-call{
     background:linear-gradient(135deg,var(--ai-blue),var(--ai-indigo));
     color:#fff;
-    border-radius:10px;
+    border-radius:8px;
     padding:8px 18px;
     text-decoration:none;
 }
 
-/* ================= HERO ================= */
+/* HERO */
 .hero{
     min-height:100vh;
     display:flex;
     align-items:center;
+    position:relative;
 }
 .hero h1{
     font-size:52px;
@@ -78,48 +72,45 @@ body{
     -webkit-text-fill-color:transparent;
 }
 .hero p{
-    max-width:520px;
+    margin-top:22px;
     color:var(--text-muted);
-    margin-top:20px;
+    max-width:480px;
 }
 .btn-start{
-    margin-top:25px;
-    padding:14px 34px;
-    border:none;
-    border-radius:30px;
     background:linear-gradient(135deg,var(--ai-blue),var(--ai-indigo));
     color:#fff;
+    border:none;
+    padding:13px 28px;
+    border-radius:30px;
+    margin-top:25px;
 }
 .hero-3d{
     max-width:420px;
-    filter:drop-shadow(0 0 40px rgba(56,189,248,.4));
-    animation:float 6s ease-in-out infinite;
+    filter:drop-shadow(0 0 45px rgba(56,189,248,.4));
+    animation:float3d 6s ease-in-out infinite;
 }
-@keyframes float{
+@keyframes float3d{
     0%{transform:translateY(0)}
     50%{transform:translateY(-25px)}
     100%{transform:translateY(0)}
 }
 
-/* ================= SERVICES ================= */
+/* SERVICES */
 .service-card{
     background:rgba(15,23,42,.9);
     border:1px solid rgba(255,255,255,.06);
-    border-radius:18px;
-    padding:30px;
-    text-align:center;
+    box-shadow:0 20px 40px rgba(0,0,0,.5);
     transition:.4s;
 }
 .service-card:hover{
-    transform:translateY(-12px) scale(1.02);
+    transform:translateY(-10px) scale(1.02);
     border-color:rgba(56,189,248,.4);
 }
 .service-card i{
     color:var(--ai-blue);
-    margin-bottom:15px;
 }
 
-/* ================= STATS ================= */
+/* STATS */
 .stats{
     background:linear-gradient(180deg,#020617,#0f172a);
 }
@@ -128,62 +119,58 @@ body{
     font-weight:800;
 }
 
-/* ================= PRICING ================= */
+/* PRICING */
 .price-card{
     background:rgba(15,23,42,.95);
-    border:1px solid rgba(255,255,255,.06);
-    border-radius:20px;
     padding:35px;
+    border-radius:20px;
+    border:1px solid rgba(255,255,255,.06);
     box-shadow:0 30px 60px rgba(0,0,0,.6);
     transition:.4s;
 }
-.price-card:hover{
-    transform:translateY(-10px);
-}
+.price-card:hover{transform:translateY(-10px)}
 .price-card.featured{
     background:linear-gradient(180deg,rgba(56,189,248,.18),rgba(15,23,42,.95));
     border-color:rgba(56,189,248,.5);
 }
+.price-card.dark{background:#000;color:#fff}
 .price{
     font-size:36px;
     font-weight:800;
     color:var(--ai-blue);
 }
 .btn-select{
-    margin-top:20px;
-    width:100%;
-    padding:12px;
-    border:none;
-    border-radius:10px;
+    margin-top:25px;
     background:linear-gradient(135deg,var(--ai-blue),var(--ai-indigo));
     color:#fff;
+    border:none;
+    padding:12px 30px;
+    border-radius:8px;
 }
 
-/* ================= FOOTER ================= */
+/* FOOTER */
 footer{
     background:#020617;
     border-top:1px solid rgba(255,255,255,.05);
 }
-footer i{
-    color:var(--ai-blue);
-}
-
+footer i{color:var(--ai-blue)}
 </style>
 </head>
-
 <body>
 
 <canvas id="ai-canvas"></canvas>
 
 <nav class="navbar fixed-top navbar-expand-lg">
 <div class="container">
-<a class="navbar-brand" href="#">Equad<span class="text-white">Labs</span></a>
-<ul class="navbar-nav mx-auto">
-<li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-<li class="nav-item"><a class="nav-link" href="#">Services</a></li>
-<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+<a class="navbar-brand" href="index.html">Equad<span class="text-white">Labs</span></a>
+<div class="collapse navbar-collapse justify-content-center">
+<ul class="navbar-nav">
+<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+<li class="nav-item"><a class="nav-link" href="service.html">Services</a></li>
+<li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
 </ul>
-<a href="#" class="btn-call">Book a Call</a>
+</div>
+<a href="https://calendly.com/faisalusman385" target="_blank" class="btn-call">Book a call</a>
 </div>
 </nav>
 
@@ -191,24 +178,24 @@ footer i{
 <div class="container">
 <div class="row align-items-center">
 <div class="col-md-6" data-aos="fade-right">
-<h1>AI-Powered Software<br><span>That Scales Business</span></h1>
-<p>We build intelligent platforms, automation systems, and AI-driven software solutions for modern enterprises.</p>
-<button class="btn-start">Launch with AI</button>
+<h1>We Build Software <br><span>Powered by AI</span><br>for Growth</h1>
+<p>AI-driven digital solutions, automation, and scalable platforms for modern businesses.</p>
+<button class="btn btn-start">Launch with AI</button>
 </div>
 <div class="col-md-6 text-center" data-aos="fade-left">
-<img src="img.png" class="hero-3d img-fluid">
+<img src="img.png" class="img-fluid hero-3d">
 </div>
 </div>
 </div>
 </section>
 
-<section class="py-5">
+<section id="services" class="py-5">
 <div class="container text-center">
-<h2 class="mb-5">AI-Driven Services</h2>
+<h2 class="mb-5">Our Services</h2>
 <div class="row g-4">
-<div class="col-md-4"><div class="service-card"><i class="fa fa-brain fa-2x"></i><h5>AI Systems</h5><p>ML, automation & intelligence</p></div></div>
-<div class="col-md-4"><div class="service-card"><i class="fa fa-code fa-2x"></i><h5>Web Platforms</h5><p>Scalable SaaS & dashboards</p></div></div>
-<div class="col-md-4"><div class="service-card"><i class="fa fa-mobile fa-2x"></i><h5>Apps</h5><p>Cross-platform mobile apps</p></div></div>
+<div class="col-md-4"><div class="service-card p-4"><i class="fa fa-brain fa-2x mb-3"></i><h5>AI Services</h5><p>Automation & intelligence</p></div></div>
+<div class="col-md-4"><div class="service-card p-4"><i class="fa fa-code fa-2x mb-3"></i><h5>Web Development</h5><p>Modern scalable platforms</p></div></div>
+<div class="col-md-4"><div class="service-card p-4"><i class="fa fa-mobile fa-2x mb-3"></i><h5>Mobile Apps</h5><p>Android & iOS apps</p></div></div>
 </div>
 </div>
 </section>
@@ -216,63 +203,102 @@ footer i{
 <section class="stats py-5 text-center">
 <div class="container">
 <div class="row">
-<div class="col-md-4"><h2>500+</h2><p>AI Projects</p></div>
+<div class="col-md-4"><h2>500+</h2><p>Projects</p></div>
 <div class="col-md-4"><h2>30+</h2><p>Clients</p></div>
 <div class="col-md-4"><h2>95%</h2><p>Success Rate</p></div>
 </div>
 </div>
 </section>
 
-<footer class="py-4 text-center text-muted">
-© 2026 EquadLabs — AI Software Company
-</footer>
+<!-- PRICING SECTION (UNCHANGED STRUCTURE) -->
+<section class="py-5">
+<div class="container">
+<div class="row mb-4 align-items-center">
+<div class="col-md-6"><h2 class="fw-bold">Membership</h2><h4 class="text-muted">Plans</h4></div>
+<div class="col-md-6 text-md-end">
+<div class="pricing-toggle">
+<button class="active" data-plan="monthly">Monthly</button>
+<button data-plan="quarterly">Quarterly</button>
+<button data-plan="yearly">Yearly</button>
+</div>
+</div>
+</div>
 
+<div class="row g-4">
+<div class="col-md-4"><div class="price-card"><h5 class="title"></h5><p class="desc"></p><h2 class="price"></h2><ul class="features"></ul><button class="btn-select">Select</button></div></div>
+<div class="col-md-4"><div class="price-card featured"><h5 class="title"></h5><p class="desc"></p><h2 class="price"></h2><ul class="features"></ul><button class="btn-select">Select</button></div></div>
+<div class="col-md-4"><div class="price-card dark"><h5 class="title"></h5><p class="desc"></p><h2 class="price"></h2><ul class="features"></ul><button class="btn-select">Select</button></div></div>
+</div>
+</div>
+</section>
+
+<footer class="text-center text-muted py-4">
+© 2026 EquadLabs. All Rights Reserved.
+</footer>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
 <script>
 AOS.init({duration:1200,once:true});
+
+/* PRICING DATA (UNCHANGED) */
+const data={
+monthly:[
+{title:"Starter – Monthly",desc:"Ideal for freelancers.",price:"$2500/mo",features:["Landing Page","SEO","Chatbot"]},
+{title:"Growth – Monthly",desc:"For SMBs.",price:"$5000/mo",features:["Dynamic Website","AI Chatbot","Reports"]},
+{title:"Pro – Monthly",desc:"Advanced AI stack.",price:"$12000/mo",features:["Full App","AI Integration","Coordinator"]}
+],
+quarterly:[
+{title:"Starter – Quarterly",desc:"Startup plan.",price:"$7000/qtr",features:["Website","SEO","Chatbot"]},
+{title:"Growth – Quarterly",desc:"Scaling teams.",price:"$14000/qtr",features:["Dashboard","Automation","Analytics"]},
+{title:"Pro – Quarterly",desc:"Growth focused.",price:"$33000/qtr",features:["App","AI","CRM"]}
+],
+yearly:[
+{title:"Starter – Yearly",desc:"Long-term presence.",price:"$25000/yr",features:["Corporate Site","SEO","Monitoring"]},
+{title:"Growth – Yearly",desc:"Strategic growth.",price:"$51000/yr",features:["AI Automation","Analytics","Content"]},
+{title:"Enterprise – Yearly",desc:"Transformation.",price:"$122000/yr",features:["Custom AI","Branding","SLA"]}
+]
+};
+
+function loadPlans(type){
+$('.price-card').each(function(i){
+$(this).find('.title').text(data[type][i].title);
+$(this).find('.desc').text(data[type][i].desc);
+$(this).find('.price').text(data[type][i].price);
+const ul=$(this).find('.features').html('');
+data[type][i].features.forEach(f=>ul.append(`<li>${f}</li>`));
+});
+}
+$('.pricing-toggle button').click(function(){
+$('.pricing-toggle button').removeClass('active');
+$(this).addClass('active');
+loadPlans($(this).data('plan'));
+});
+loadPlans('monthly');
 
 /* AI PARTICLES */
 const canvas=document.getElementById("ai-canvas");
 const ctx=canvas.getContext("2d");
 let w,h,particles=[];
-function resize(){
-w=canvas.width=window.innerWidth;
-h=canvas.height=window.innerHeight;
-}
-window.addEventListener("resize",resize);
-resize();
-
-for(let i=0;i<80;i++){
-particles.push({
-x:Math.random()*w,
-y:Math.random()*h,
-vx:(Math.random()-.5)*0.5,
-vy:(Math.random()-.5)*0.5
-});
-}
-
-function draw(){
+function resize(){w=canvas.width=innerWidth;h=canvas.height=innerHeight}
+window.onresize=resize;resize();
+for(let i=0;i<80;i++)particles.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.5,vy:(Math.random()-.5)*.5});
+function animate(){
 ctx.clearRect(0,0,w,h);
 particles.forEach(p=>{
-p.x+=p.vx;
-p.y+=p.vy;
+p.x+=p.vx;p.y+=p.vy;
 if(p.x<0||p.x>w)p.vx*=-1;
 if(p.y<0||p.y>h)p.vy*=-1;
-
-ctx.beginPath();
-ctx.arc(p.x,p.y,2,0,Math.PI*2);
 ctx.fillStyle="rgba(56,189,248,.6)";
-ctx.fill();
+ctx.beginPath();ctx.arc(p.x,p.y,2,0,Math.PI*2);ctx.fill();
 });
-
 for(let i=0;i<particles.length;i++){
 for(let j=i;j<particles.length;j++){
 let dx=particles[i].x-particles[j].x;
 let dy=particles[i].y-particles[j].y;
-let d=Math.sqrt(dx*dx+dy*dy);
-if(d<120){
+if(Math.sqrt(dx*dx+dy*dy)<120){
 ctx.strokeStyle="rgba(99,102,241,.15)";
-ctx.lineWidth=1;
 ctx.beginPath();
 ctx.moveTo(particles[i].x,particles[i].y);
 ctx.lineTo(particles[j].x,particles[j].y);
@@ -280,10 +306,12 @@ ctx.stroke();
 }
 }
 }
-requestAnimationFrame(draw);
+requestAnimationFrame(animate);
 }
-draw();
+animate();
 </script>
 
 </body>
 </html>
+
+    
