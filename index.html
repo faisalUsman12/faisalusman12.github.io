@@ -94,6 +94,60 @@ body{
     50%{transform:translateY(-25px)}
     100%{transform:translateY(0)}
 }
+/* CONTACT CTA */
+.contact-cta {
+    padding: 100px 20px;
+    background:
+        radial-gradient(circle at top, rgba(99,102,241,.25), transparent 45%);
+}
+
+.contact-box {
+    max-width: 900px;
+    margin: auto;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 24px;
+    padding: 60px;
+    text-align: center;
+    backdrop-filter: blur(12px);
+}
+
+.contact-box h3 {
+    font-size: 36px;
+    font-weight: 800;
+}
+
+.contact-box span {
+    background: linear-gradient(135deg, var(--ai-blue), var(--ai-indigo));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.contact-box p {
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 15px auto 35px;
+}
+
+.contact-box input,
+.contact-box textarea {
+    width: 100%;
+    background: rgba(0,0,0,0.35);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: #fff;
+    padding: 14px 18px;
+    border-radius: 12px;
+    outline: none;
+}
+
+.contact-box input::placeholder,
+.contact-box textarea::placeholder {
+    color: #aaa;
+}
+
+#formStatus {
+    min-height: 18px;
+}
 
 /* SERVICES */
 .service-card{
@@ -173,6 +227,44 @@ body{
     background:linear-gradient(180deg,rgba(56,189,248,.18),rgba(15,23,42,.95));
     border-color:rgba(56,189,248,.5);
 }
+/* PRICING TOGGLE */
+.pricing-toggle-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 60px 0 40px;
+}
+
+.pricing-toggle {
+    display: flex;
+    gap: 6px;
+    background: rgba(255,255,255,0.05);
+    padding: 6px;
+    border-radius: 999px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+.toggle-btn {
+    background: transparent;
+    color: var(--text-muted);
+    border: none;
+    padding: 12px 26px;
+    font-weight: 600;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.toggle-btn:hover {
+    color: #fff;
+}
+
+.toggle-btn.active {
+    background: linear-gradient(135deg, var(--ai-blue), var(--ai-indigo));
+    color: #fff;
+    box-shadow: 0 0 25px rgba(56,189,248,0.45);
+}
+
 .price-card.dark{background:#000;color:#fff}
 .price{
     font-size:36px;
@@ -317,12 +409,14 @@ footer i{color:var(--ai-blue)}
 <div class="row mb-4 align-items-center">
 <div class="col-md-6"><h2 class="fw-bold">Membership</h2><h4 class="text-muted">Plans</h4></div>
 <div class="col-md-6 text-md-end">
-<div class="pricing-toggle">
-<button class="active" data-plan="monthly">Monthly</button>
-<button data-plan="quarterly">Quarterly</button>
-<button data-plan="yearly">Yearly</button>
+<div class="pricing-toggle-wrapper" data-aos="fade-up">
+    <div class="pricing-toggle">
+        <button class="toggle-btn active" data-plan="monthly">Monthly</button>
+        <button class="toggle-btn" data-plan="quarterly">Quarterly</button>
+        <button class="toggle-btn" data-plan="yearly">Yearly</button>
+    </div>
 </div>
-</div>
+
 </div>
 
 <div class="row g-4">
@@ -331,6 +425,37 @@ footer i{color:var(--ai-blue)}
 <div class="col-md-4"><div class="price-card dark"><h5 class="title"></h5><p class="desc"></p><h2 class="price"></h2><ul class="features"></ul><button class="btn-select">Select</button></div></div>
 </div>
 </div>
+</section>
+<section class="contact-cta" data-aos="fade-up">
+    <div class="container">
+        <div class="contact-box">
+            <h3>Let’s Build Something <span>Smart</span></h3>
+            <p>
+                Have an idea, project, or question?  
+                Drop your details and we’ll get back to you.
+            </p>
+
+            <form id="contactForm">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="col-12">
+                        <textarea name="message" rows="4" placeholder="Your Message" required></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-start mt-4">
+                    Send Message
+                </button>
+
+                <p id="formStatus" class="small mt-3"></p>
+            </form>
+        </div>
+    </div>
 </section>
 
 <footer class="text-center text-muted py-4">
@@ -465,5 +590,30 @@ animate();
 
 </body>
 </html>
+<script>
+(function(){
+    emailjs.init("PUBLIC_KEY_FROM_EMAILJS");
+})();
+
+document.getElementById("contactForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const status = document.getElementById("formStatus");
+    status.textContent = "Sending...";
+
+    emailjs.sendForm(
+        "service_xxxxxx",
+        "template_xxxxxx",
+        this
+    ).then(() => {
+        status.textContent = "Message sent successfully.";
+        status.style.color = "#38bdf8";
+        this.reset();
+    }, () => {
+        status.textContent = "Failed to send message. Try again.";
+        status.style.color = "red";
+    });
+});
+</script>
 
     
